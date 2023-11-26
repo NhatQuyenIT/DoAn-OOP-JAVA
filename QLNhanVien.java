@@ -51,7 +51,7 @@ class QLNhanVien {
                     break;
                 default:
                     System.out.println("Lựa chọn không hợp lệ. Vui lòng chọn lại.");
-            }
+            }12312313212313212
         } while (choice != 8);
     }
 }
