@@ -6,7 +6,13 @@ class QLHoaDon {
 	private DSHoaDon dshd;
     Scanner scanner = new Scanner(System.in);
     String fileName = "HoaDon.txt";
+    String fileName2 = "HoaDon_full.txt";
+    String fileNameKhachHang = "KhachHang.txt";
+    DSKhachHang dsKhachHang;
+ // Thêm constructor để khởi tạo dsNhaCungCap từ dữ liệu có sẵn
     public QLHoaDon() {
+        dsKhachHang = new DSKhachHang();
+        dsKhachHang.taiDanhSachTuFile(fileNameKhachHang); // Tải danh sách nhà cung cấp từ file
         dshd = new DSHoaDon();
     }
 
@@ -42,10 +48,10 @@ class QLHoaDon {
                 	dshd.xem();
                     break;
                 case 6:
-                    dshd.taiDanhSachTuFile(fileName);
+                    dshd.taiDanhSachTuFile(fileName, dsKhachHang);
                     break;
                 case 7:            
-                    dshd.xuatDanhSachRaFile(fileName);
+                    dshd.xuatDanhSachRaFile(fileName2);
                     break;
                 case 8:
                     break;

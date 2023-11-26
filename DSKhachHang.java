@@ -24,6 +24,14 @@ class DSKhachHang {
 	public static void setMakhtt(int makhtt) {
 		DSKhachHang.makhtt = makhtt;
 	}
+	
+	public ArrayList<KhachHang> getDs3() {
+		return ds3;
+	}
+
+	public void setDs3(ArrayList<KhachHang> ds3) {
+		this.ds3 = ds3;
+	}
 
 	public void xem() {
 		for(KhachHang kh : ds3) {
