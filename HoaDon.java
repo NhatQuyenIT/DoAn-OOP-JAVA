@@ -78,4 +78,12 @@ public class HoaDon  implements INhap,IXuat{
         }
         return tongTien;
     }
+    public void sua() { // ------
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Nhập mã số hóa đơn mới: ");
+        this.setMahoadon(scanner.nextInt());
+        scanner.nextLine();
+        System.out.println("Nhập ngày thanh toán hóa đơn mới: ");
+        this.setNgaythanhtoan(scanner.nextLine());
+    }
 }

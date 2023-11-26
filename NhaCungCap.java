@@ -40,6 +40,7 @@ public class NhaCungCap implements INhap,IXuat{
 	public void setSdtncc(long sdtncc) {
 		this.sdtncc = sdtncc;
 	}
+
 	@Override
 	public void nhap() {
 		Scanner in = new Scanner(System.in);
@@ -60,4 +61,17 @@ public class NhaCungCap implements INhap,IXuat{
 		System.out.println("Địa chỉ nhà cung cấp: " +diachincc);
 		System.out.println("Số điện thoại nhà cung cấp: " + sdtncc);
 	}
+    public void sua() { // ------
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Nhập mã số nhà cung cấp mới: ");
+        this.setMancc(scanner.nextInt());
+        scanner.nextLine();
+        System.out.println("Nhập tên nhà cung cấp mới: ");
+        this.setTenncc(scanner.nextLine());
+        System.out.println("Nhập số điện thoại nhà cung cấp mới: ");
+        this.setSdtncc(scanner.nextLong());
+        scanner.nextLine();
+        System.out.println("Nhập địa chỉ nhà cung cấp mới: ");
+        this.setDiachincc(scanner.nextLine());
+    }
 }

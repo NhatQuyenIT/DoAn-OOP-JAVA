@@ -79,8 +79,8 @@ public class KhachHang implements INhap,IXuat{
 		System.out.println("Họ và tên khách hàng: " + tenkh);
 		System.out.println("Giới tính khách hàng: " + phai);
 		System.out.println("Số tuổi: " + sotuoi);
-		System.out.println("Số điện thoại nhân viên: " +sdtkh);
-		System.out.println("Địa chỉ nhân viên: " + diachikh);		
+		System.out.println("Số điện thoại khách hàng: " +sdtkh);
+		System.out.println("Địa chỉ khách hàng: " + diachikh);		
 	}
 	@Override
 	public String toString() {
@@ -88,8 +88,24 @@ public class KhachHang implements INhap,IXuat{
 	            "\nHọ và tên khách hàng: " + tenkh +
 	            "\nGiới tính khách hàng: " + phai +
 	            "\nSố tuổi: " + sotuoi +
-	            "\nSố điện thoại nhân viên: " + sdtkh +
-	            "\nĐịa chỉ nhân viên: " + diachikh;
+	            "\nSố điện thoại khách hàng: " + sdtkh +
+	            "\nĐịa chỉ khách hàng: " + diachikh;
 	}
-	
+	public void sua() { // ------
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Nhập mã số khách hàng mới: ");
+        this.setMakh(scanner.nextInt());
+        scanner.nextLine();
+        System.out.println("Nhập tên khách hàng mới: ");
+        this.setTenkh(scanner.nextLine());
+        System.out.println("Nhập số tuổi khách hàng mới: ");
+        this.setSotuoi(scanner.nextInt());
+        System.out.println("Nhập số điện thoại khách hàng mới: ");
+        this.setSdtkh(scanner.nextLong());
+        scanner.nextLine();
+        System.out.println("Nhập giới tính khách hàng mới: ");
+        this.setPhai(scanner.nextLine());
+        System.out.println("Nhập địa chỉ khách hàng mới: ");
+        this.setDiachikh(scanner.nextLine());
+    }
 }

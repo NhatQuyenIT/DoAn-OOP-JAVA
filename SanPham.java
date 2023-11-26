@@ -92,5 +92,20 @@ public class SanPham extends NhaCungCap implements INhap,IXuat{
 	            "\nLoại sản phẩm: " + loaisp +
 	            "\nSố tiền nhập hàng: " + tiennhaphang;
 	}
-	
+	public void sua() { // ------
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Nhập mã số sản phẩm mới: ");
+        this.setMasp(scanner.nextInt());
+        scanner.nextLine();
+        System.out.println("Nhập tên sản phẩm mới: ");
+        this.setTensp(scanner.nextLine());
+        System.out.println("Nhập loại sản phẩm mới: ");
+        this.setLoaisp(scanner.nextLine());
+        System.out.println("Nhập số lượng nhập hàng sản phẩm mới: ");
+        this.setSoluongnhaphang(scanner.nextInt());
+        System.out.println("Nhập số tiền nhập hàng sản phẩm mới: ");
+        this.setTiennhaphang(scanner.nextDouble());
+        System.out.println("Nhập giá tiền của sản phẩm mới: ");
+        this.setGiasp(scanner.nextDouble());
+    }
 }

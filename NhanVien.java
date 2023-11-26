@@ -82,4 +82,21 @@ public class NhanVien implements INhap,IXuat{
 		System.out.println("Số điện thoại nhân viên: " +sdtnv);
 		System.out.println("Địa chỉ nhân viên: " + diachinv);
 	}
+	public void sua() { // ------
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Nhập mã số nhân viên mới: ");
+        this.setManv(scanner.nextInt());
+        scanner.nextLine();
+        System.out.println("Nhập tên nhân viên mới: ");
+        this.setTennv(scanner.nextLine());
+        System.out.println("Nhập số điện thoại nhân viên mới: ");
+        this.setSdtnv(scanner.nextLong());
+        scanner.nextLine();
+        System.out.println("Nhập giới tính nhân viên mới: ");
+        this.setPhai(scanner.nextLine());
+        System.out.println("Nhập chức vụ nhân viên mới: ");
+        this.setChucvu(scanner.nextLine());
+        System.out.println("Nhập địa chỉ nhà cung cấp mới: ");
+        this.setDiachinv(scanner.nextLine());
+    }
 }

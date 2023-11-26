@@ -1,0 +1,4 @@
+1;0908282400;Phạm Thế Bảo; 273 An Dương Vương, P.3, Q.5;Nam;Giám đốc
+2;0917771412; Đỗ Ngọc Như Loan; 105 Bà Huyện Thanh Quan, Q.3;Nữ;Nhân viên
+3;0918178052;Phan Tấn Quốc; 28 Nguyễn Thông, Q.3;Nam;Nhân viên
+4;0918108944;Nguyễn Hòa; 04 Tôn Đức Thắng, Q.1;Nam;Nhân Viên
