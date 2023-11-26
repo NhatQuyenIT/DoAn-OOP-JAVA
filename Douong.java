@@ -8,13 +8,14 @@ public class Douong extends SanPham implements INhap,IXuat{
 	public Douong() {
 		super();
 	}
+	
 	public Douong(int masp, int soluongnhaphang, double tiennhaphang, double giasp, String tensp, String loaisp,
-			int mancc, String tenncc, String diachincc, long sdtncc, String ngaysx, String hansudung) {
-		super(masp, soluongnhaphang, tiennhaphang, giasp, tensp, loaisp, mancc, tenncc, diachincc, sdtncc);
+			NhaCungCap nhaCungCap, String ngaysx, String hansudung) {
+		super(masp, soluongnhaphang, tiennhaphang, giasp, tensp, loaisp, nhaCungCap);
 		this.ngaysx = ngaysx;
 		this.hansudung = hansudung;
 	}
-	
+
 	public String getNgaysx() {
 		return ngaysx;
 	}

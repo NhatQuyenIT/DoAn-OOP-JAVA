@@ -9,12 +9,12 @@ public class Dogiadung extends SanPham implements INhap,IXuat{
 		super();
 	}
 
+	
 	public Dogiadung(int masp, int soluongnhaphang, double tiennhaphang, double giasp, String tensp, String loaisp,
-			int mancc, String tenncc, String diachincc, long sdtncc, String xuatxu) {
-		super(masp, soluongnhaphang, tiennhaphang, giasp, tensp, loaisp, mancc, tenncc, diachincc, sdtncc);
+			NhaCungCap nhaCungCap, String xuatxu) {
+		super(masp, soluongnhaphang, tiennhaphang, giasp, tensp, loaisp, nhaCungCap);
 		this.xuatxu = xuatxu;
 	}
-	
 
 	public String getXuatxu() {
 		return xuatxu;

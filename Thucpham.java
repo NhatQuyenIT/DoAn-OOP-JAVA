@@ -9,16 +9,17 @@ public class Thucpham extends SanPham implements INhap,IXuat{
 	public Thucpham() {
 		super();
 	}
+	
 	public Thucpham(int masp, int soluongnhaphang, double tiennhaphang, double giasp, String tensp, String loaisp,
-			int mancc, String tenncc, String diachincc, long sdtncc, double tienVAT) {
-		super(masp, soluongnhaphang, tiennhaphang, giasp, tensp, loaisp, mancc, tenncc, diachincc, sdtncc);
+			NhaCungCap nhaCungCap, double tienVAT) {
+		super(masp, soluongnhaphang, tiennhaphang, giasp, tensp, loaisp, nhaCungCap);
 		this.tienVAT = tienVAT;
 	}
-	
+
 	public double getTiendichvu() {
 		return tienVAT;
 	}
-	public void setTiendichvu(double tiendichvu) {
+	public void setTiendichvu(double tiendichvu, double tienVAT) {
 		this.tienVAT = tienVAT;
 	}
 	

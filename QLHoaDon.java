@@ -13,13 +13,13 @@ class QLHoaDon {
     public void menu() {
         int choice;
         do {
-            System.out.println("1. Thêm Nhà cung cấp");
-            System.out.println("2. Sửa thông tin Nhà cung cấp");
-            System.out.println("3. Xóa Nhà cung cấp");
-            System.out.println("4. Tìm kiếm Nhà cung cấp");
-            System.out.println("5. Xem thông tin trong danh sách Nhà cung cấp");
-            System.out.println("6. Tải danh sách Nhà cung cấp từ file");
-            System.out.println("7. Xuất danh sách Nhà cung cấp ra file");
+            System.out.println("1. Thêm Hóa đơn");
+            System.out.println("2. Sửa thông tin Hóa đơn");
+            System.out.println("3. Xóa Hóa đơn");
+            System.out.println("4. Tìm kiếm Hóa đơn");
+            System.out.println("5. Xem thông tin trong danh sách Hóa đơn");
+            System.out.println("6. Tải danh sách Hóa đơn từ file");
+            System.out.println("7. Xuất danh sách Hóa đơn ra file");
             System.out.println("8. Quay trở về giao diện chính");
             System.out.print("Chọn: ");
             choice = scanner.nextInt();

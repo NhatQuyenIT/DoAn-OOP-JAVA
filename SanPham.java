@@ -2,25 +2,37 @@ package QLsieuthimini;
 
 import java.util.Scanner;
 
-public class SanPham extends NhaCungCap implements INhap,IXuat{
+public class SanPham implements INhap,IXuat{
 	private int masp;
 	private int soluongnhaphang;
 	private String tensp;
 	protected String loaisp;
 	private double tiennhaphang;
 	private double giasp;
-	public SanPham() {
-		super();
-	}
-	public SanPham(int masp, int soluongnhaphang,double tiennhaphang, double giasp, String tensp, String loaisp, int mancc, String tenncc, String diachincc, long sdtncc) {
-		super(mancc, tenncc, diachincc,sdtncc);
-		this.masp = masp;
-		this.soluongnhaphang = soluongnhaphang;
-		this.tensp = tensp;
-		this.loaisp = loaisp;
-		this.tiennhaphang = tiennhaphang;
-		this.giasp = giasp;
-	}
+	private NhaCungCap nhaCungCap;
+	 
+	// Thêm các thuộc tính từ NhaCungCap
+    private int mancc;
+    private String tenncc;
+    private String diachincc;
+    private long sdtncc;
+    
+	 // Constructor không tham số
+	    public SanPham() {
+	        this.nhaCungCap = new NhaCungCap();
+	    }
+
+	    // Constructor có tham số
+	    public SanPham(int masp, int soluongnhaphang, double tiennhaphang, double giasp, String tensp, String loaisp, NhaCungCap nhaCungCap) {
+	        this.masp = masp;
+	        this.soluongnhaphang = soluongnhaphang;
+	        this.tensp = tensp;
+	        this.loaisp = loaisp;
+	        this.tiennhaphang = tiennhaphang;
+	        this.giasp = giasp;
+	        this.nhaCungCap = nhaCungCap;
+	    }
+
 	public int getMasp() {
 		return masp;
 	}
@@ -57,6 +69,47 @@ public class SanPham extends NhaCungCap implements INhap,IXuat{
 	public void setTiennhaphang(double tiennhaphang) {
 		this.tiennhaphang = tiennhaphang;
 	}
+	
+	public NhaCungCap getNhaCungCap() {
+		return nhaCungCap;
+	}
+
+	public void setNhaCungCap(NhaCungCap nhaCungCap) {
+		this.nhaCungCap = nhaCungCap;
+	}
+
+	public int getMancc() {
+		return mancc;
+	}
+
+	public void setMancc(int mancc) {
+		this.mancc = mancc;
+	}
+
+	public String getTenncc() {
+		return tenncc;
+	}
+
+	public void setTenncc(String tenncc) {
+		this.tenncc = tenncc;
+	}
+
+	public String getDiachincc() {
+		return diachincc;
+	}
+
+	public void setDiachincc(String diachincc) {
+		this.diachincc = diachincc;
+	}
+
+	public long getSdtncc() {
+		return sdtncc;
+	}
+
+	public void setSdtncc(long sdtncc) {
+		this.sdtncc = sdtncc;
+	}
+
 	@Override
 	public void nhap() {
 		Scanner in = new Scanner(System.in);
@@ -73,6 +126,8 @@ public class SanPham extends NhaCungCap implements INhap,IXuat{
 		tensp = in.nextLine();
 		System.out.println("Nhập loại sản phẩm: ");
 		loaisp = in.nextLine();
+		// Nhập thông tin nhà cung cấp
+        nhaCungCap.nhap();
 	}
 	@Override
 	public void xuat() {
@@ -82,6 +137,8 @@ public class SanPham extends NhaCungCap implements INhap,IXuat{
 		System.out.println("Tên sản phẩm: " + tensp);
 		System.out.println("Loại sản phẩm: " + loaisp);
 		System.out.println("Số tiền nhập hàng: " + tiennhaphang);
+		// Hiển thị thông tin nhà cung cấp
+        nhaCungCap.xuat();
 	}
 	@Override
 	public String toString() {
@@ -92,7 +149,8 @@ public class SanPham extends NhaCungCap implements INhap,IXuat{
 	            "\nLoại sản phẩm: " + loaisp +
 	            "\nSố tiền nhập hàng: " + tiennhaphang;
 	}
-	public void sua() { // ------
+    public void sua() {
+        // Sửa thông tin mã sản phẩm, tên sản phẩm, loại sản phẩm, số lượng nhập hàng, giá tiền, và thông tin nhà cung cấp
         Scanner scanner = new Scanner(System.in);
         System.out.println("Nhập mã số sản phẩm mới: ");
         this.setMasp(scanner.nextInt());
@@ -107,5 +165,19 @@ public class SanPham extends NhaCungCap implements INhap,IXuat{
         this.setTiennhaphang(scanner.nextDouble());
         System.out.println("Nhập giá tiền của sản phẩm mới: ");
         this.setGiasp(scanner.nextDouble());
+
+        // Sửa thông tin nhà cung cấp
+        nhaCungCap.sua();
+    }
+    public void nhapNhaCungCap() {
+        // Tạo đối tượng NhaCungCap và gọi phương thức nhap() của nó
+        NhaCungCap ncc = new NhaCungCap();
+        ncc.nhap();
+        
+        // Gán thông tin nhà cung cấp cho sản phẩm
+        setMancc(ncc.getMancc());
+        setTenncc(ncc.getTenncc());
+        setDiachincc(ncc.getDiachincc());
+        setSdtncc(ncc.getSdtncc());
     }
 }

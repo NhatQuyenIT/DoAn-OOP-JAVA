@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class DSNhaCungCap {
+public class DSNhaCungCap {
 	Scanner scanner = new Scanner(System.in);
 	private ArrayList<NhaCungCap> ds1;
 	private static int mancctt;
@@ -21,6 +21,13 @@ class DSNhaCungCap {
 	}
 	public static void setMancctt(int mancctt) {
 		DSNhaCungCap.mancctt = mancctt;
+	}
+	
+	public ArrayList<NhaCungCap> getDs1() {
+		return ds1;
+	}
+	public void setDs1(ArrayList<NhaCungCap> ds1) {
+		this.ds1 = ds1;
 	}
 	public void xem() {
 		for(NhaCungCap ncc : ds1) {
