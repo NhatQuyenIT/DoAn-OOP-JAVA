@@ -42,6 +42,6 @@ public class QLsieuthimini {
 			default:
 	            System.out.println("Lựa chọn không hợp lệ. Vui lòng chọn lại.");
 			}
-		} while (select != 5);
+		} while (select != 6);
 	}
 }
