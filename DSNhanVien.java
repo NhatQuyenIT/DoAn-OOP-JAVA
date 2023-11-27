@@ -62,18 +62,21 @@ class DSNhanVien {
         System.out.println("Không tìm thấy nhân viên cần xóa!");
 	}
 	public void timKiem() {
-		System.out.println("Nhập tên Nhân viên cần tìm kiếm: ");
-		String find = scanner.nextLine();
-		boolean found = true;
-		for(NhanVien nv : ds2) {
-			if (nv.getTennv().contains(find)) {
-				nv.xuat();
-			}
-			if (!found) {
-				System.out.println("Không có nhân viên tìm kiếm !");
-			}
-		}
+	    System.out.println("Nhập tên Nhân viên cần tìm kiếm: ");
+	    String find = scanner.nextLine();
+	    boolean found = false; // Khởi tạo found là false
+	    for (NhanVien nv : ds2) {
+	        if (nv.getTennv().contains(find)) {
+	            nv.xuat();
+	            found = true; // Đánh dấu là đã tìm thấy ít nhất một nhân viên
+	        }
+	    }
+	    
+	    if (!found) {
+	        System.out.println("Không có nhân viên tìm kiếm !");
+	    }
 	}
+
 	public void taiDanhSachTuFile(String fileName) {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
