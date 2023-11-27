@@ -2,18 +2,22 @@ package QLsieuthimini;
 
 import java.util.Scanner;
 
-class QLHoaDon {
-	private DSHoaDon dshd;
-    Scanner scanner = new Scanner(System.in);
-    String fileName = "HoaDon.txt";
-    String fileName2 = "HoaDon_full.txt";
-    String fileNameKhachHang = "KhachHang.txt";
-    DSKhachHang dsKhachHang;
- // Thêm constructor để khởi tạo dsNhaCungCap từ dữ liệu có sẵn
+public class QLHoaDon {
+    private DSHoaDon dshd;
+    private DSSanPham dsSanPham;
+    private DSKhachHang dsKhachHang;
+    private Scanner scanner = new Scanner(System.in);
+    private final String FILE_NAME = "HoaDon.txt";
+    private final String FILE_NAME_FULL = "HoaDon_full.txt";
+    private final String FILE_NAME_KHACHHANG = "KhachHang.txt";
+
+    // Thêm constructor để khởi tạo dsNhaCungCap từ dữ liệu có sẵn
     public QLHoaDon() {
+        dsSanPham = new DSSanPham();
         dsKhachHang = new DSKhachHang();
-        dsKhachHang.taiDanhSachTuFile(fileNameKhachHang); // Tải danh sách nhà cung cấp từ file
-        dshd = new DSHoaDon();
+        dsKhachHang.taiDanhSachTuFile(FILE_NAME_KHACHHANG); // Tải danh sách nhà cung cấp từ file
+        // Truyền DSSanPham vào constructor DSHoaDon
+        dshd = new DSHoaDon(dsSanPham);
     }
 
     public void menu() {
@@ -32,26 +36,26 @@ class QLHoaDon {
             scanner.nextLine(); // Đọc dòng trống sau khi đọc số
 
             switch (choice) {
-            	case 1:
-	                dshd.them();
-	                break;
+                case 1:
+                    themHoaDon();
+                    break;
                 case 2:
-                	dshd.sua();
+                    suaHoaDon();
                     break;
                 case 3:
-                	dshd.xoa();
+                    xoaHoaDon();
                     break;
                 case 4:
-                	dshd.timKiem();
+                    timKiemHoaDon();
                     break;
                 case 5:
-                	dshd.xem();
+                    xemDanhSachHoaDon();
                     break;
                 case 6:
-                    dshd.taiDanhSachTuFile(fileName, dsKhachHang);
+                    taiDanhSachHoaDonTuFile();
                     break;
-                case 7:            
-                    dshd.xuatDanhSachRaFile(fileName2);
+                case 7:
+                    xuatDanhSachHoaDonRaFile();
                     break;
                 case 8:
                     break;
@@ -59,5 +63,33 @@ class QLHoaDon {
                     System.out.println("Lựa chọn không hợp lệ. Vui lòng chọn lại.");
             }
         } while (choice != 8);
+    }
+
+    private void themHoaDon() {
+        dshd.them();
+    }
+
+    private void suaHoaDon() {
+        dshd.sua();
+    }
+
+    private void xoaHoaDon() {
+        dshd.xoa();
+    }
+
+    private void timKiemHoaDon() {
+        dshd.timKiem();
+    }
+
+    private void xemDanhSachHoaDon() {
+        dshd.xem();
+    }
+
+    private void taiDanhSachHoaDonTuFile() {
+        dshd.taiDanhSachTuFile(FILE_NAME, dsKhachHang);
+    }
+
+    private void xuatDanhSachHoaDonRaFile() {
+        dshd.xuatDanhSachRaFile(FILE_NAME_FULL);
     }
 }

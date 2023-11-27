@@ -25,11 +25,17 @@ public class ChiTietHoaDon {
 	public double tinhThanhTien() {
         return sanpham.getGiasp() * soluongmua;
     }
-	@Override
-    public String toString() {
-        return sanpham.getTensp() +
-                "\nSố lượng mua: " + soluongmua +
-                "\nThành tiền: " + tinhThanhTien();
-	}
-	
+	public void xuat() {
+        System.out.println("Mã sản phẩm: " + this.sanpham.getMasp());
+        System.out.println("Số lượng mua: " + this.soluongmua);
+        System.out.println("Thành tiền: " + String.format("%.2f", this.tinhThanhTien()));
+        System.out.println("-------------------------");
+    }
+//	@Override
+//    public String toString() {
+//        return sanpham.getTensp() +
+//                "\nSố lượng mua: " + soluongmua +
+//                "\nThành tiền: " + tinhThanhTien();
+//	}
+//	
 }

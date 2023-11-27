@@ -24,7 +24,13 @@ class DSSanPham {
 	public static void setMasptt(int masptt) {
 		DSSanPham.masptt = masptt;
 	}
-
+	
+	public ArrayList<SanPham> getDs4() {
+		return ds4;
+	}
+	public void setDs4(ArrayList<SanPham> ds4) {
+		this.ds4 = ds4;
+	}
 	public void xem() {
 	    if (ds4 != null) {
 	        for(SanPham sp : ds4) {

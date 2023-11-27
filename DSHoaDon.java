@@ -8,15 +8,22 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.StringJoiner;
 
 class DSHoaDon {
 	Scanner scanner = new Scanner(System.in);
 	private ArrayList<HoaDon> ds5;
 	private static int mahdtt;
-	// Khởi tạo danh sách sản phẩm trong constructor
-    public DSHoaDon() {
-        ds5 = new ArrayList<>();
-    }
+	private DSSanPham dsSanPham;
+	 
+	public DSHoaDon() {
+		ds5 = new ArrayList<>();
+	}
+
+	public DSHoaDon(DSSanPham dsSanPham) {
+	    this.dsSanPham = dsSanPham;
+	    ds5 = new ArrayList<>();
+	}
 
 	public static int getMahdtt() {
 		return mahdtt;
@@ -27,12 +34,20 @@ class DSHoaDon {
 	}
 
 	public void xem() {
-	    if (ds5 != null) {
-	        for(HoaDon hd : ds5) {
+	    if (ds5 != null && !ds5.isEmpty()) {
+	        for (HoaDon hd : ds5) {
 	            hd.xuat();
+	            System.out.println("Chi tiết hóa đơn:");
+	            for (ChiTietHoaDon chiTiet : hd.getChiTietHoaDonList()) {
+	                System.out.println("Mã sản phẩm: " + chiTiet.getSanpham().getMasp());
+	                System.out.println("Số lượng mua: " + chiTiet.getSoluongmua());
+	                System.out.println("Thành tiền: " + chiTiet.tinhThanhTien());
+	                System.out.println("-------------------------");
+	            }
+	            System.out.println("===================================");
 	        }
 	    } else {
-	        System.out.println("Danh sách hóa đơn trống.");
+	        System.out.println("Danh sách hóa đơn trống hoặc không có dữ liệu.");
 	    }
 	}
 
@@ -94,7 +109,7 @@ class DSHoaDon {
 	        String line;
 	        while ((line = reader.readLine()) != null) {
 	            // Đảm bảo bạn đã truyền dsNhaCungCap vào hàm
-	            parseLineToSanPham(line, dsKhachHang);
+	            parseLineToSanPham(line, dsKhachHang, dsSanPham);
 	        }
 	        System.out.println("Đã tải danh sách từ tệp tin: " + fileName);
 	        // Kiểm tra xem danh sách có dữ liệu không
@@ -109,10 +124,9 @@ class DSHoaDon {
 	}
 
 
-    public void xuatDanhSachRaFile(String fileName2) {
+	public void xuatDanhSachRaFile(String fileName2) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName2))) {
-        	for(HoaDon hd : ds5) {
-                // Ghi đối tượng NhaCungCap thành dòng văn bản và xuống dòng
+            for (HoaDon hd : ds5) {
                 writer.write(parseHoaDonToLine(hd));
                 writer.newLine();
             }
@@ -122,20 +136,51 @@ class DSHoaDon {
         }
     }
 
-    // Hàm chuyển dòng văn bản thành đối tượng NhaCungCap
-    private void parseLineToSanPham(String line, DSKhachHang dsKhachHang) {
+    private void parseLineToSanPham(String line, DSKhachHang dsKhachHang, DSSanPham dsSanPham) {
         String[] parts = line.split(";");
-        if (parts.length == 2) {
-            int mahoadon = Integer.parseInt(parts[0]);       
+        
+        // Kiểm tra xem có đủ phần tử hay không
+        if (parts.length >= 8) {
+            // Không đủ phần tử để tạo Hóa đơn
+            return;
+        }
+
+        try {
+            int mahoadon = Integer.parseInt(parts[0]);
             String ngaythanhtoan = parts[1];
 
-            // Lấy thông tin nhà cung cấp từ danh sách
-            KhachHang KhachHang = findKhachHangById(mahoadon, dsKhachHang);
+            // Lấy thông tin khách hàng từ danh sách
+            KhachHang khachHang = findKhachHangById(mahoadon, dsKhachHang);
 
-            // Kiểm tra nếu tìm thấy nhà cung cấp
-            if (KhachHang != null) {
-                ds5.add(new HoaDon(mahoadon, ngaythanhtoan, KhachHang));
+            // Kiểm tra nếu tìm thấy khách hàng
+            if (khachHang != null) {
+                HoaDon hoaDon = new HoaDon(mahoadon, ngaythanhtoan, khachHang);
+
+                // Đọc thông tin chi tiết hóa đơn
+                for (int i = 2; i < parts.length; i++) {
+                    String[] chiTietParts = parts[i].split(";");
+
+                    // Kiểm tra xem có đủ phần tử trong chi tiết hóa đơn không
+                    if (chiTietParts.length == 2) {
+                        int maSanPham = Integer.parseInt(chiTietParts[0]);
+                        int soLuongMua = Integer.parseInt(chiTietParts[1]);
+
+                        // Tìm sản phẩm trong danh sách
+                        SanPham sanPham = findSanPhamById(maSanPham, dsSanPham);
+
+                        // Kiểm tra nếu tìm thấy sản phẩm
+                        if (sanPham != null) {
+                            ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon(sanPham, soLuongMua);
+                            hoaDon.themChiTietHoaDon(chiTietHoaDon);
+                        }
+                    }
+                }
+
+                ds5.add(hoaDon);
             }
+        } catch (NumberFormatException e) {
+            // Xử lý nếu có lỗi chuyển đổi kiểu số
+            System.out.println("Lỗi chuyển đổi kiểu số: " + e.getMessage());
         }
     }
     
@@ -148,14 +193,37 @@ class DSHoaDon {
         }
         return null;
     }
+    // Thêm phương thức để tìm sản phẩm theo mã
+    private SanPham findSanPhamById(int maSanPham, DSSanPham dsSanPham) {
+        for (SanPham sanPham : dsSanPham.getDs4()) {
+            if (sanPham.getMasp() == maSanPham) {
+                return sanPham;
+            }
+        }
+        return null;
+    }
 
- // Hàm chuyển đối tượng SanPham thành dòng văn bản
+ // Hàm chuyển đối tượng HoaDon thành dòng văn bản
     private String parseHoaDonToLine(HoaDon hd) {
-        // Lấy thông tin nhà cung cấp từ sản phẩm
-        KhachHang kh = hd.getKhachhang();
+        StringJoiner line = new StringJoiner(";");
 
-        // Ghi đối tượng SanPham và NhaCungCap thành dòng văn bản và xuống dòng
-        return hd.getMahoadon() + ";" + hd.getNgaythanhtoan() + ";" + kh.getMakh() + ";" + kh.getTenkh() + ";" +
-        kh.getDiachikh() + ";" + kh.getSdtkh() + ";" + kh.getSotuoi() + ";" + kh.getPhai() + ":" + hd.tinhTongTien();
+        line.add(String.valueOf(hd.getMahoadon()))
+            .add(hd.getNgaythanhtoan());
+
+        KhachHang kh = hd.getKhachHang();
+        line.add(String.valueOf(kh.getMakh()))
+            .add(kh.getTenkh())
+            .add(kh.getDiachikh())
+            .add(String.valueOf(kh.getSdtkh()))
+            .add(String.valueOf(kh.getSotuoi()))
+            .add(kh.getPhai());
+
+        if (hd.getChiTietHoaDonList() != null) {
+            for (ChiTietHoaDon chiTiet : hd.getChiTietHoaDonList()) {
+                line.add(String.format("%d:%d", chiTiet.getSanpham().getMasp(), chiTiet.getSoluongmua()));
+            }
+        }
+
+        return line.toString();
     }
 }
