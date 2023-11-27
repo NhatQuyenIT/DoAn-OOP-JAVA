@@ -9,8 +9,8 @@ public class SanPham implements INhap,IXuat{
 	protected String loaisp;
 	private double tiennhaphang;
 	private double giasp;
-	private NhaCungCap nhaCungCap;
-	 
+	private NhaCungCap nhaCungCap; // Sử dụng composition 
+	
 	// Thêm các thuộc tính từ NhaCungCap
     private int mancc;
     private String tenncc;
@@ -151,20 +151,20 @@ public class SanPham implements INhap,IXuat{
 	}
     public void sua() {
         // Sửa thông tin mã sản phẩm, tên sản phẩm, loại sản phẩm, số lượng nhập hàng, giá tiền, và thông tin nhà cung cấp
-        Scanner scanner = new Scanner(System.in);
+        Scanner in = new Scanner(System.in);
         System.out.println("Nhập mã số sản phẩm mới: ");
-        this.setMasp(scanner.nextInt());
-        scanner.nextLine();
+        this.setMasp(in.nextInt());
+        in.nextLine();
         System.out.println("Nhập tên sản phẩm mới: ");
-        this.setTensp(scanner.nextLine());
+        this.setTensp(in.nextLine());
         System.out.println("Nhập loại sản phẩm mới: ");
-        this.setLoaisp(scanner.nextLine());
+        this.setLoaisp(in.nextLine());
         System.out.println("Nhập số lượng nhập hàng sản phẩm mới: ");
-        this.setSoluongnhaphang(scanner.nextInt());
+        this.setSoluongnhaphang(in.nextInt());
         System.out.println("Nhập số tiền nhập hàng sản phẩm mới: ");
-        this.setTiennhaphang(scanner.nextDouble());
+        this.setTiennhaphang(in.nextDouble());
         System.out.println("Nhập giá tiền của sản phẩm mới: ");
-        this.setGiasp(scanner.nextDouble());
+        this.setGiasp(in.nextDouble());
 
         // Sửa thông tin nhà cung cấp
         nhaCungCap.sua();

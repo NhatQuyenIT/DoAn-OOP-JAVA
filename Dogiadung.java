@@ -43,10 +43,6 @@ public class Dogiadung extends SanPham implements INhap,IXuat{
 	}
 	// Phương thức tính VAT
     public double tinhVAT() {
-        double vat = 0.0;
-        if (!xuatxu.equalsIgnoreCase("Việt Nam")) {
-            vat = 0.2 * getGiasp();
-        }
-        return vat;
+         return 0.2 * getGiasp();
     }
 }

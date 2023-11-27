@@ -39,16 +39,6 @@ public class Thucpham extends SanPham implements INhap,IXuat{
 	    System.out.println("Tổng giá trị sản phẩm (đã tính thuế VAT): " + chitra);
 	}
 	public double tinhVAT() {
-		// Kiểm tra loại sản phẩm
-	    if (loaisp.equalsIgnoreCase("thịt")) {
-	        // Nếu là thịt, thì áp dụng VAT là 10%
-	        return 0.1 * getGiasp();
-	    } else if (loaisp.equalsIgnoreCase("rau") || loaisp.equalsIgnoreCase("củ") || loaisp.equalsIgnoreCase("quả")) {
-	        // Nếu là rau, củ hoặc quả, thì áp dụng VAT là 5%
-	        return 0.05 * getGiasp();
-	    } else {
-	        // Nếu không thuộc các loại trên, trả về 0
-	        return 0;
-	    }
+		return 0.15;
 	}
 }

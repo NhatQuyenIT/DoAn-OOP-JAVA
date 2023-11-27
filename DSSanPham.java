@@ -11,12 +11,16 @@ import java.util.Scanner;
 
 class DSSanPham {
 	Scanner scanner = new Scanner(System.in);
-	private ArrayList<SanPham> ds4;
+	private ArrayList<SanPham> dsSanPham;
 	private static int masptt;
 	// Khởi tạo danh sách sản phẩm trong constructor
     public DSSanPham() {
-        ds4 = new ArrayList<>();
+        dsSanPham = new ArrayList<>();
     }
+	public DSSanPham(ArrayList<SanPham> dsSanPham) {
+		this.dsSanPham = dsSanPham;
+	}
+
 	public static int getMasptt() {
 		return masptt;
 	}
@@ -25,15 +29,9 @@ class DSSanPham {
 		DSSanPham.masptt = masptt;
 	}
 	
-	public ArrayList<SanPham> getDs4() {
-		return ds4;
-	}
-	public void setDs4(ArrayList<SanPham> ds4) {
-		this.ds4 = ds4;
-	}
 	public void xem() {
-	    if (ds4 != null) {
-	        for(SanPham sp : ds4) {
+	    if (dsSanPham != null) {
+	        for(SanPham sp : dsSanPham) {
 	            sp.xuat();
 	        }
 	    } else {
@@ -50,13 +48,13 @@ class DSSanPham {
             // Sau đó nhập thông tin sản phẩm
             sp.nhap();
 
-            ds4.add(sp);
+            dsSanPham.add(sp);
         }
     }
 	public void sua() {
 		  System.out.println("Nhập tên Sản phẩm cần sửa: ");
 	        String tenCanSua = scanner.nextLine();
-	        for(SanPham sp : ds4) {
+	        for(SanPham sp : dsSanPham) {
 	        	if (sp.getTensp().equals(tenCanSua)) {
 	                // Gọi phương thức sua() của đối tượng tài liệu tương ứng
 	                sp.sua();
@@ -69,10 +67,10 @@ class DSSanPham {
 	public void xoa() {
 		System.out.println("Nhập tên Sản phẩm cần xóa: ");
         String tenCanXoa = scanner.nextLine();
-        for(SanPham sp : ds4) {
+        for(SanPham sp : dsSanPham) {
         	if (sp.getTensp().equals(tenCanXoa)) {
                 // Gọi phương thức xoa() của đối tượng tài liệu tương ứng
-                ds4.remove(sp);
+        		dsSanPham.remove(sp);
                 System.out.println("Đã xóa sản phẩm!");
                 return; // Kết thúc sau khi xóa
             }
@@ -83,7 +81,7 @@ class DSSanPham {
 		System.out.println("Nhập tên Sản phẩm cần tìm kiếm: ");
 		String find = scanner.nextLine();
 		boolean found = true;
-		for(SanPham sp : ds4) {
+		for(SanPham sp : dsSanPham) {
 			if (sp.getTensp().contains(find)) {
 				sp.xuat();
 			}
@@ -97,11 +95,11 @@ class DSSanPham {
 	        String line;
 	        while ((line = reader.readLine()) != null) {
 	            // Đảm bảo bạn đã truyền dsNhaCungCap vào hàm
-	            parseLineToSanPham(line, dsNhaCungCap);
+	        	parseLineToSanPham(line, dsNhaCungCap);
 	        }
 	        System.out.println("Đã tải danh sách từ tệp tin: " + fileName);
 	        // Kiểm tra xem danh sách có dữ liệu không
-	        if (ds4.isEmpty()) {
+	        if (dsSanPham.isEmpty()) {
 	            System.out.println("Danh sách sản phẩm trống.");
 	        }
 	    } catch (FileNotFoundException e) {
@@ -114,9 +112,9 @@ class DSSanPham {
 
     public void xuatDanhSachRaFile(String fileName2) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName2))) {
-        	for(SanPham sp : ds4) {
+        	for(SanPham sp : dsSanPham) {
                 // Ghi đối tượng NhaCungCap thành dòng văn bản và xuống dòng
-                writer.write(parseSanPhamToLine(sp));
+        		writer.write(parseSanPhamToLine(sp) + ";");
                 writer.newLine();
             }
             System.out.println("Đã xuất danh sách ra tệp tin: " + fileName2);
@@ -141,7 +139,7 @@ class DSSanPham {
 
             // Kiểm tra nếu tìm thấy nhà cung cấp
             if (nhaCungCap != null) {
-                ds4.add(new SanPham(masp, soluongnhaphang, tiennhaphang, giasp, tensp, loaisp, nhaCungCap));
+            	dsSanPham.add(new SanPham(masp, soluongnhaphang, tiennhaphang, giasp, tensp, loaisp, nhaCungCap));
             }
         }
     }
@@ -165,5 +163,13 @@ class DSSanPham {
         return sp.getMasp() + ";" + sp.getSoluongnhaphang() + ";" + sp.getTiennhaphang() + ";" +
                 sp.getGiasp() + ";" + sp.getTensp() + ";" + sp.getLoaisp() + ";" +
                 ncc.getMancc() + ";" + ncc.getTenncc() + ";" + ncc.getDiachincc() + ";" + ncc.getSdtncc();
+    }
+    public SanPham timKiemSanPhamTheoMa(int maSanPham) {
+        for (SanPham sp : dsSanPham) {
+            if (sp.getMasp() == maSanPham) {
+                return sp;
+            }
+        }
+        return null; // Trả về null nếu không tìm thấy
     }
 }

@@ -49,10 +49,6 @@ public class Douong extends SanPham implements INhap,IXuat{
 		System.out.println("Tổng giá trị sản phẩm: " + chitra);
 	}
 	 public double tinhVAT() {
-		 if (loaisp.equalsIgnoreCase("nước ngọt")) {
-			 return 0.05*getGiasp();
-		 } else {
-			 return 0;
-		 }
+			 return 0.1*getGiasp();
 	 }
 }

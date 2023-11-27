@@ -1,27 +1,41 @@
 package QLsieuthimini;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
-public class HoaDon  implements INhap,IXuat{
+public class HoaDon implements INhap,IXuat{
 	private int mahoadon;
 	private String ngaythanhtoan;
-	private List<ChiTietHoaDon> chiTietHoaDonList;
-	private KhachHang KhachHang;
-
-	// Constructor không tham số
+	private KhachHang khachHang;
+	private SanPham sanPham;
+	private ChiTietHoaDon chiTietHoaDon;
+	// Thêm các thuộc tính từ KhachHang
+	private int makh;
+	private int sotuoi;
+	private long sdtkh;
+	private String tenkh;
+	private String diachikh;
+	private String phai;
+	// Thêm các thuộc tính từ SanPham
+	private int masp;
+	private int soluongnhaphang;
+	private String tensp;
+	protected String loaisp;
+	private double tiennhaphang;
+	private double giasp;
+	// Thêm các thuộc tính từ ChiTietHoaDon
+    private int soluongmua;
+	
 	public HoaDon() {
-	    this.KhachHang = new KhachHang(); // Gán giá trị mặc định hoặc tạo đối tượng mới
+		this.khachHang = new KhachHang();
+		this.sanPham = new SanPham();
+		this.chiTietHoaDon = new ChiTietHoaDon();
 	}
-
-	    
-	public HoaDon(int mahoadon, String ngaythanhtoan, KhachHang khachhang) {
-		super();
+	public HoaDon(int mahoadon, String ngaythanhtoan, KhachHang khachHang, SanPham sanPham, ChiTietHoaDon chiTietHoaDon) {
 		this.mahoadon = mahoadon;
 		this.ngaythanhtoan = ngaythanhtoan;
-		this.KhachHang = khachhang;
-		this.chiTietHoaDonList = new ArrayList<>();
+		this.khachHang = khachHang;
+		this.sanPham = sanPham;
+		this.chiTietHoaDon = chiTietHoaDon;
 	}
 	public int getMahoadon() {
 		return mahoadon;
@@ -35,29 +49,111 @@ public class HoaDon  implements INhap,IXuat{
 	public void setNgaythanhtoan(String ngaythanhtoan) {
 		this.ngaythanhtoan = ngaythanhtoan;
 	}
-	public List<ChiTietHoaDon> getChiTietHoaDonList() {
-		return chiTietHoaDonList;
-	}
-	public void themChiTietHoaDon(ChiTietHoaDon chiTietHoaDon) {
-	    if (chiTietHoaDonList == null) {
-	        chiTietHoaDonList = new ArrayList<>();
-	    }
-	    chiTietHoaDonList.add(chiTietHoaDon);
-	}
-
-	
+	// ---
 	public KhachHang getKhachHang() {
-		return KhachHang;
+		return khachHang;
 	}
-
 	public void setKhachHang(KhachHang khachHang) {
-		KhachHang = khachHang;
+		this.khachHang = khachHang;
 	}
-
-	public void setChiTietHoaDonList(List<ChiTietHoaDon> chiTietHoaDonList) {
-		this.chiTietHoaDonList = chiTietHoaDonList;
+	public int getMakh() {
+		return makh;
 	}
-
+	public void setMakh(int makh) {
+		this.makh = makh;
+	}
+	public int getSotuoi() {
+		return sotuoi;
+	}
+	public void setSotuoi(int sotuoi) {
+		this.sotuoi = sotuoi;
+	}
+	public long getSdtkh() {
+		return sdtkh;
+	}
+	public void setSdtkh(long sdtkh) {
+		this.sdtkh = sdtkh;
+	}
+	public String getTenkh() {
+		return tenkh;
+	}
+	public void setTenkh(String tenkh) {
+		this.tenkh = tenkh;
+	}
+	public String getDiachikh() {
+		return diachikh;
+	}
+	public void setDiachikh(String diachikh) {
+		this.diachikh = diachikh;
+	}
+	public String getPhai() {
+		return phai;
+	}
+	public void setPhai(String phai) {
+		this.phai = phai;
+	}
+	
+	
+	public SanPham getSanPham() {
+		return sanPham;
+	}
+	public void setSanPham(SanPham sanPham) {
+		this.sanPham = sanPham;
+	}
+	public int getMasp() {
+		return masp;
+	}
+	public void setMasp(int masp) {
+		this.masp = masp;
+	}
+	public int getSoluongnhaphang() {
+		return soluongnhaphang;
+	}
+	public void setSoluongnhaphang(int soluongnhaphang) {
+		this.soluongnhaphang = soluongnhaphang;
+	}
+	public String getTensp() {
+		return tensp;
+	}
+	public void setTensp(String tensp) {
+		this.tensp = tensp;
+	}
+	public String getLoaisp() {
+		return loaisp;
+	}
+	public void setLoaisp(String loaisp) {
+		this.loaisp = loaisp;
+	}
+	public double getTiennhaphang() {
+		return tiennhaphang;
+	}
+	public void setTiennhaphang(double tiennhaphang) {
+		this.tiennhaphang = tiennhaphang;
+	}
+	public double getGiasp() {
+		return giasp;
+	}
+	public void setGiasp(double giasp) {
+		this.giasp = giasp;
+	}
+	
+	public ChiTietHoaDon getChiTietHoaDon() {
+		return chiTietHoaDon;
+	}
+	public void setChiTietHoaDon(ChiTietHoaDon chiTietHoaDon) {
+		this.chiTietHoaDon = chiTietHoaDon;
+	}
+	public int getSoluongmua() {
+		return soluongmua;
+	}
+	public void setSoluongmua(int soluongmua) {
+		this.soluongmua = soluongmua;
+	}
+	@Override
+	public void xuat() {
+		System.out.println("Mã hóa đơn: " + mahoadon);
+		System.out.println("Ngày thanh toán: " + ngaythanhtoan);
+	}
 	@Override
 	public void nhap() {
 		Scanner in = new Scanner(System.in);
@@ -68,44 +164,34 @@ public class HoaDon  implements INhap,IXuat{
 		ngaythanhtoan = in.nextLine();
 	}
 	@Override
-	public void xuat() {
-	    System.out.println("Mã hóa đơn: " + this.mahoadon);
-	    System.out.println("Ngày thanh toán: " + this.ngaythanhtoan);
-	    System.out.println("Thông tin Khách hàng: ");
-	    this.KhachHang.xuat();
-
-	    if (this.chiTietHoaDonList != null && !this.chiTietHoaDonList.isEmpty()) {
-	        double tongTien = tinhTongTien();
-	        System.out.println("Tổng tiền: " + tongTien);
-
-	        if (tongTien >= 600000) {
-	            System.out.println("Xin chúc mừng, bạn đã được nhận voucher trị giá 100.000.");
-	        }
-	    }
+	public String toString() {
+		return "Mã hóa đơn: " + mahoadon +
+	            "\nNgày lập hóa đơn: " + ngaythanhtoan;
 	}
-
     public void sua() {
-        Scanner in = new Scanner(System.in);
+        // Sửa thông tin mã hóa đơn, ngày thanh toán và thông tin khách hàng
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Nhập mã số hóa đơn mới: ");
-        this.setMahoadon(in.nextInt());
-        in.nextLine();
-        System.out.println("Nhập ngày thanh toán hóa đơn mới: ");
-        this.setNgaythanhtoan(in.nextLine());
+        this.setMahoadon(scanner.nextInt());
+        scanner.nextLine();
+        System.out.println("Nhập ngày thanh toán mới: ");
+        this.setNgaythanhtoan(scanner.nextLine());
+        
+        // Sửa thông tin khách hàng
+        khachHang.sua();
     }
-    
-    public void nhapKhachHang() {
-        // Sử dụng phương thức nhap() của KhachHang
-        this.KhachHang.nhap();
-    }
-    
-	// Phương thức tính tổng tiền
-	public double tinhTongTien() {
-        double tongTien = 0;
-        if (chiTietHoaDonList != null) {
-            for (ChiTietHoaDon chiTietHoaDon : chiTietHoaDonList) {
-                tongTien += chiTietHoaDon.tinhThanhTien();
-            }
-        }
-        return tongTien;
-    }
+	public void nhapKhachHang() {
+		// Tạo đối tượng KhachHang và gọi phương thức nhap() của nó
+        KhachHang kh = new KhachHang();
+        kh.nhap();
+        
+        // Gán thông tin nhà cung cấp cho sản phẩm
+        setMakh(kh.getMakh());
+        setTenkh(kh.getTenkh());
+        setSotuoi(kh.getSotuoi());
+        setPhai(kh.getPhai());
+        setSdtkh(kh.getSdtkh());
+        setDiachikh(kh.getDiachikh());
+	}
+	
 }

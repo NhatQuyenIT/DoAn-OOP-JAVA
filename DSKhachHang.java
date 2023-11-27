@@ -11,10 +11,10 @@ import java.util.Scanner;
 
 class DSKhachHang {
 	Scanner scanner = new Scanner(System.in);
-	private ArrayList<KhachHang> ds3;
+	private ArrayList<KhachHang> dsKhachHang;  // Thêm biến này để lưu trữ danh sách khách hàng
 	private static int makhtt;
 	public DSKhachHang() {
-		ds3 = new ArrayList<>();
+		dsKhachHang = new ArrayList<>();  // Khởi tạo danh sách khách hàng
 	}
 
 	public static int getMakhtt() {
@@ -25,16 +25,16 @@ class DSKhachHang {
 		DSKhachHang.makhtt = makhtt;
 	}
 	
-	public ArrayList<KhachHang> getDs3() {
-		return ds3;
+	public ArrayList<KhachHang> getdsKhachHang() {
+		return dsKhachHang;
 	}
 
-	public void setDs3(ArrayList<KhachHang> ds3) {
-		this.ds3 = ds3;
+	public void setdsKhachHang(ArrayList<KhachHang> dsKhachHang) {
+		this.dsKhachHang = dsKhachHang;
 	}
 
 	public void xem() {
-		for(KhachHang kh : ds3) {
+		for(KhachHang kh : dsKhachHang) {
 			kh.xuat();
 		}
 	}
@@ -43,13 +43,13 @@ class DSKhachHang {
 		kh = new KhachHang();
 		if (kh != null) {
 			kh.nhap();
-			ds3.add(kh);
+			dsKhachHang.add(kh);
 		}
 	}
 	public void sua() {
 		  System.out.println("Nhập tên Khách hàng cần sửa: ");
 	        String tenCanSua = scanner.nextLine();
-	        for(KhachHang kh : ds3) {
+	        for(KhachHang kh : dsKhachHang) {
 	        	if (kh.getTenkh().equals(tenCanSua)) {
 	                // Gọi phương thức sua() của đối tượng tài liệu tương ứng
 	                kh.sua();
@@ -62,10 +62,10 @@ class DSKhachHang {
 	public void xoa() {
 		System.out.println("Nhập tên Khách hàng cần xóa: ");
         String tenCanXoa = scanner.nextLine();
-        for(KhachHang kh : ds3) {
+        for(KhachHang kh : dsKhachHang) {
         	if (kh.getTenkh().equals(tenCanXoa)) {
                 // Gọi phương thức xoa() của đối tượng tài liệu tương ứng
-                ds3.remove(kh);
+        		dsKhachHang.remove(kh);
                 System.out.println("Đã xóa khách hàng!");
                 return; // Kết thúc sau khi xóa
             }
@@ -76,7 +76,7 @@ class DSKhachHang {
 		System.out.println("Nhập tên Khách hàng cần tìm kiếm: ");
 		String find = scanner.nextLine();
 		boolean found = true;
-		for(KhachHang kh : ds3) {
+		for(KhachHang kh : dsKhachHang) {
 			if (kh.getTenkh().contains(find)) {
 				kh.xuat();
 			}
@@ -89,10 +89,11 @@ class DSKhachHang {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                // Chuyển dòng văn bản thành đối tượng NhaCungCap và thêm vào danh sách
+                // Chuyển dòng văn bản thành đối tượng KhachHang và thêm vào danh sách ds3
                 KhachHang kh = parseLineToKhachHang(line);
                 if (kh != null) {
-                    ds3.add(kh);
+                	dsKhachHang.add(kh);
+                    dsKhachHang.add(kh);  // Thêm vào danh sách dsKhachHang
                 }
             }
             System.out.println("Đã tải danh sách từ tệp tin: " + fileName);
@@ -105,7 +106,7 @@ class DSKhachHang {
 
     public void xuatDanhSachRaFile(String fileName) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-        	for(KhachHang kh : ds3) {
+        	for(KhachHang kh : dsKhachHang) {
                 // Ghi đối tượng NhaCungCap thành dòng văn bản và xuống dòng
                 writer.write(parseKhachHangToLine(kh));
                 writer.newLine();
@@ -134,5 +135,13 @@ class DSKhachHang {
     // Hàm chuyển đối tượng NhaCungCap thành dòng văn bản
     private String parseKhachHangToLine(KhachHang kh) {
         return kh.getMakh() + ";" + kh.getSdtkh() + ";" + kh.getTenkh() + ";" + kh.getDiachikh() + ";" + kh.getPhai() + ";" + kh.getSotuoi();
+    }
+    public KhachHang timKiemKhachHangTheoMa(int maKhachHang) {
+        for (KhachHang kh : dsKhachHang) {
+            if (kh.getMakh() == maKhachHang) {
+                return kh;
+            }
+        }
+        return null; // Trả về null nếu không tìm thấy
     }
 }

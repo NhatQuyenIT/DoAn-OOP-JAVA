@@ -1,20 +1,37 @@
 package QLsieuthimini;
 
 public class ChiTietHoaDon {
-	private SanPham sanpham;
+	private SanPham sanPham;
     private int soluongmua;
+ // Thêm các thuộc tính từ SanPham
+ 	private int masp;
+ 	private int soluongnhaphang;
+ 	private String tensp;
+ 	protected String loaisp;
+ 	private double tiennhaphang;
+ 	private double giasp;
 	public ChiTietHoaDon() {
-		
+		this.sanPham = new SanPham();
 	}
-	public ChiTietHoaDon(SanPham sanpham, int soluongmua) {
-		this.sanpham = sanpham;
+	
+	public ChiTietHoaDon(SanPham sanPham, int soluongmua, int masp, int soluongnhaphang, String tensp, String loaisp,
+			double tiennhaphang, double giasp) {
+		super();
+		this.sanPham = sanPham;
 		this.soluongmua = soluongmua;
+		this.masp = masp;
+		this.soluongnhaphang = soluongnhaphang;
+		this.tensp = tensp;
+		this.loaisp = loaisp;
+		this.tiennhaphang = tiennhaphang;
+		this.giasp = giasp;
 	}
+
 	public SanPham getSanpham() {
-		return sanpham;
+		return sanPham;
 	}
 	public void setSanpham(SanPham sanpham) {
-		this.sanpham = sanpham;
+		this.sanPham = sanpham;
 	}
 	public int getSoluongmua() {
 		return soluongmua;
@@ -22,20 +39,77 @@ public class ChiTietHoaDon {
 	public void setSoluongmua(int soluongmua) {
 		this.soluongmua = soluongmua;
 	}
-	public double tinhThanhTien() {
-        return sanpham.getGiasp() * soluongmua;
-    }
-	public void xuat() {
-        System.out.println("Mã sản phẩm: " + this.sanpham.getMasp());
-        System.out.println("Số lượng mua: " + this.soluongmua);
-        System.out.println("Thành tiền: " + String.format("%.2f", this.tinhThanhTien()));
-        System.out.println("-------------------------");
-    }
-//	@Override
-//    public String toString() {
-//        return sanpham.getTensp() +
-//                "\nSố lượng mua: " + soluongmua +
-//                "\nThành tiền: " + tinhThanhTien();
-//	}
-//	
+	
+	
+	public SanPham getSanPham() {
+		return sanPham;
+	}
+
+	public void setSanPham(SanPham sanPham) {
+		this.sanPham = sanPham;
+	}
+
+	public int getMasp() {
+		return masp;
+	}
+
+	public void setMasp(int masp) {
+		this.masp = masp;
+	}
+
+	public int getSoluongnhaphang() {
+		return soluongnhaphang;
+	}
+
+	public void setSoluongnhaphang(int soluongnhaphang) {
+		this.soluongnhaphang = soluongnhaphang;
+	}
+
+	public String getTensp() {
+		return tensp;
+	}
+
+	public void setTensp(String tensp) {
+		this.tensp = tensp;
+	}
+
+	public String getLoaisp() {
+		return loaisp;
+	}
+
+	public void setLoaisp(String loaisp) {
+		this.loaisp = loaisp;
+	}
+
+	public double getTiennhaphang() {
+		return tiennhaphang;
+	}
+
+	public void setTiennhaphang(double tiennhaphang) {
+		this.tiennhaphang = tiennhaphang;
+	}
+
+	public double getGiasp() {
+		return giasp;
+	}
+
+	public void setGiasp(double giasp) {
+		this.giasp = giasp;
+	}
+
+	@Override
+    public String toString() {
+        return sanPham.getMasp() + sanPham.getTensp() +
+                "\n Số lượng mua: " + soluongmua;
+	}
+	public double tinhTien() {
+	    if (this.sanPham != null) {
+	        return this.sanPham.getGiasp() * this.soluongmua;
+	    } else {
+	        // Trả về 0 hoặc một giá trị mặc định tùy thuộc vào logic của bạn
+	        return 0.0;
+	    }
+	}
+
+	
 }
