@@ -140,14 +140,21 @@ public class SanPham implements INhap,IXuat{
 		// Hiển thị thông tin nhà cung cấp
         nhaCungCap.xuat();
 	}
+//	@Override
+//	public String toString() {
+//		return "Mã sản phẩm: " + masp +
+//	            "\nSố lượng nhập hàng: " + soluongnhaphang +
+//	            "\nGiá tiền sản phẩm: " + giasp +
+//	            "\nTên sản phẩm: " + tensp +
+//	            "\nLoại sản phẩm: " + loaisp +
+//	            "\nSố tiền nhập hàng: " + tiennhaphang;
+//	}
 	@Override
 	public String toString() {
-		return "Mã sản phẩm: " + masp +
-	            "\nSố lượng nhập hàng: " + soluongnhaphang +
-	            "\nGiá tiền sản phẩm: " + giasp +
-	            "\nTên sản phẩm: " + tensp +
-	            "\nLoại sản phẩm: " + loaisp +
-	            "\nSố tiền nhập hàng: " + tiennhaphang;
+		return "SanPham [masp=" + masp + ", soluongnhaphang=" + soluongnhaphang + ", tensp=" + tensp + ", loaisp="
+				+ loaisp + ", tiennhaphang=" + tiennhaphang + ", giasp=" + giasp + 
+				", nhaCungCap=" + nhaCungCap
+				+ ", mancc=" + mancc + ", tenncc=" + tenncc + ", diachincc=" + diachincc + ", sdtncc=" + sdtncc + "]";
 	}
     public void sua() {
         // Sửa thông tin mã sản phẩm, tên sản phẩm, loại sản phẩm, số lượng nhập hàng, giá tiền, và thông tin nhà cung cấp
@@ -169,7 +176,8 @@ public class SanPham implements INhap,IXuat{
         // Sửa thông tin nhà cung cấp
         nhaCungCap.sua();
     }
-    public void nhapNhaCungCap() {
+
+	public void nhapNhaCungCap() {
         // Tạo đối tượng NhaCungCap và gọi phương thức nhap() của nó
         NhaCungCap ncc = new NhaCungCap();
         ncc.nhap();

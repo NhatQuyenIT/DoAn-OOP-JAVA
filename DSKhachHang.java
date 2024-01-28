@@ -92,7 +92,6 @@ class DSKhachHang {
                 // Chuyển dòng văn bản thành đối tượng KhachHang và thêm vào danh sách ds3
                 KhachHang kh = parseLineToKhachHang(line);
                 if (kh != null) {
-                	dsKhachHang.add(kh);
                     dsKhachHang.add(kh);  // Thêm vào danh sách dsKhachHang
                 }
             }

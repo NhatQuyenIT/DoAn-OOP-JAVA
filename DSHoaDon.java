@@ -101,18 +101,18 @@ public class DSHoaDon {
 	    }
 	    System.out.println("Không tìm thấy hóa đơn cần sửa!");
 	}
-	public void xoa() {
-	    System.out.println("Nhập mã Hóa đơn cần xóa: ");
-	    int maCanXoa = scanner.nextInt();
-	    for (HoaDon hd : ds5) {
-	        if (hd.getMahoadon() == maCanXoa) {
-	            ds5.remove(hd);
-	            System.out.println("Đã xóa hóa đơn!");
-	            return;
-	        }
-	    }
-	    System.out.println("Không tìm thấy hóa đơn cần xóa!");
-	}
+//	public void xoa() {
+//	    System.out.println("Nhập mã Hóa đơn cần xóa: ");
+//	    int maCanXoa = scanner.nextInt();
+//	    for (HoaDon hd : ds5) {
+//	        if (hd.getMahoadon() == maCanXoa) {
+//	            ds5.remove(hd);
+//	            System.out.println("Đã xóa hóa đơn!");
+//	            return;
+//	        }
+//	    }
+//	    System.out.println("Không tìm thấy hóa đơn cần xóa!");
+//	}
 	public void timKiem() {
 		System.out.println("Nhập mã Hóa đơn cần tìm kiếm: ");
 		int find = scanner.nextInt();
@@ -226,4 +226,18 @@ public class DSHoaDon {
         return hd.getMahoadon() + ";" + hd.getNgaythanhtoan() + ";" + kh.getMakh() + ";" + kh.getTenkh() + ";" + kh.getSotuoi() +
         kh.getDiachikh() + ";" + kh.getSdtkh() + ";" + sp.getMasp() + sp.getTensp() + ";" + cthd.getSoluongmua() + ";" ;
     }
+	
+	public void xoa() {
+		System.out.println("Nhập mã hóa đơn cần xóa: ");
+		int maCanXoa = scanner.nextInt();
+				for (HoaDon hd : ds5) {
+					if (hd.getMahoadon() == maCanXoa) {
+						ds5.remove(hd);
+						System.out.println("Đã xóa hóa đơn!");
+						return;
+					}
+				}
+				System.out.println("Không tìm thấy hóa đơn để xóa!");
+	}
+	
 }

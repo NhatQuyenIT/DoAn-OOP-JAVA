@@ -1,4 +1,0 @@
-1;30;20.0;25.0;Cà rốt;Củ;1;Lộc Vạn Xuân;51 Đ. Thạnh Lộc 41, P. Thạnh Lộc, Q.12, TP. HCM;906784655
-2;40;15.0;20.0;Heo;Thịt;2;Hữu Nghị;40/2/5 Trần Thị Do, P Hiệp Thành, Quận 12, TP. HCM;901892899
-3;50;10.0;12.0;Salad;Rau;3;New Fresh Foods;68 Nguyễn Thái Học, P Tân Thành, Q Tân Phú, TP.HCM;963611663
-4;20;10.0;15.0;Chuối;Quả;4;Nguyên Phát Đạt;30/3 Đường Bông Sao , Phường 5, Quận 8, TP.HCM;938136069
