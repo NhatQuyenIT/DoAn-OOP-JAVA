@@ -1,4 +1,0 @@
-1;0362631410;Lê Song Nhật Quyền; 123 Nguyễn Huệ,P.Bến Nghé, Q.1, TP.HCM;Nam;Giám đốc
-2;0941309909;Trương Phú Kiệt; 10/20 đường Nguyễn Thị Minh Khai, P.Bến Thành, Q.1, TP.HCM;Nam;Nhân viên
-3;0899932766;Lê Hồng Phát; Lầu 12, Block A, chung cư Vinhomes Golden River, P.Bến Nghé, Q.1,TP.HCM;Nam;Nhân viên
-4;0346031707;Bùi Văn Tiến; 100/12 đường Nguyễn Văn Hưởng, P.Thảo Điền, Q.2, TP.HCM;Nam;Nhân Viên
